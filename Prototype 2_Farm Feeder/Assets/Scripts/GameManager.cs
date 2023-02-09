@@ -7,11 +7,12 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static int score = 0; //these are static so they can be accessed in other scripts
-    
+    public static int lives = 3;
 
-    public static bool isGameActive;
+    public bool isGameActive;
 
     public TextMeshProUGUI scoreText; //recognizes UI element to show score
+    public TextMeshProUGUI livesText;
     
     public TextMeshProUGUI gameOverText;
 
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + score.ToString();
+        livesText.text = "Lives: " + lives.ToString();
 
     }
 
@@ -32,6 +34,16 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         gameOverText.gameObject.SetActive(true);
+    }
+
+    public void AddLives(int num)
+    {
+        lives += num;
+        if (lives <= 0)
+        {
+            GameOver();
+            lives = 0;
+        }
     }
 
 

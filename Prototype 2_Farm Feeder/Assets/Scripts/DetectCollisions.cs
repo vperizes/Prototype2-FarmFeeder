@@ -12,20 +12,24 @@ public class DetectCollisions : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+
+
     void OnTriggerEnter(Collider other)
     {
-        // Instead of destroying the projectile when it collides with an animal
-        //Destroy(other.gameObject); 
+        /// Instead of destroying the projectile when it collides with an animal
+        /// Destroy(other.gameObject);
+        /// Just deactivate the food and destroy the animal
 
-        // Just deactivate the food and destroy the animal
         other.gameObject.SetActive(false);
         Destroy(gameObject);
         GameManager.score++;
 
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            gameManager.GameOver();
+            gameManager.AddLives(-1);
+            
         }
+       
     }
 
 }

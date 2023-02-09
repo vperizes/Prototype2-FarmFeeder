@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
+    private GameManager gameManager;
     private float spawnX = 10.0f;
     private float spawnXRight = 15.0f;
     private float spawnZ = 20.0f;
@@ -17,6 +18,7 @@ public class SpawnManager : MonoBehaviour
    //Invooke repeating calls the spawn random animal function to spawn random animal given a specific time interval
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInt);
     }
 
@@ -29,7 +31,7 @@ public class SpawnManager : MonoBehaviour
     //New function that spawn rangdom animals that are in the animal prefabs array
     void SpawnRandomAnimal()
     {
-        if (GameManager.isGameActive)
+        if (gameManager.isGameActive)
         {
             //Randomly generate animals for each direction they are spawning from
             int animalIndex = Random.Range(0, animalPrefabs.Length);
