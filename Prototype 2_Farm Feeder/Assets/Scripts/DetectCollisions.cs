@@ -24,7 +24,7 @@ public class DetectCollisions : MonoBehaviour
         Destroy(gameObject);
         GameManager.score++;
 
-        if (other.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             gameManager.AddLives(-1);
             

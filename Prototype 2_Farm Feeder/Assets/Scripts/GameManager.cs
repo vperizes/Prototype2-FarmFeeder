@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     
     public TextMeshProUGUI gameOverText;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         isGameActive = true;
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         gameOverText.gameObject.SetActive(true);
+
     }
 
     public void AddLives(int num)
@@ -43,6 +46,7 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
             lives = 0;
+            player.SetActive(false);
         }
     }
 
