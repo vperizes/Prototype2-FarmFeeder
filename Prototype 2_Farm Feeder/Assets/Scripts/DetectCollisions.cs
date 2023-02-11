@@ -20,16 +20,22 @@ public class DetectCollisions : MonoBehaviour
         /// Destroy(other.gameObject);
         /// Just deactivate the food and destroy the animal
 
-        other.gameObject.SetActive(false);
-        Destroy(gameObject);
-        GameManager.score++;
+        gameObject.SetActive(false); //sets projectile in pool to false
+
+        if (other.CompareTag("Animal"))
+        {
+            gameManager.AddScore(1);
+            Destroy(other.gameObject); //destroys animal
+        }
+
 
         if (other.CompareTag("Player"))
         {
             gameManager.AddLives(-1);
-            
+            Destroy(gameObject);
+
         }
-       
+
     }
 
 }

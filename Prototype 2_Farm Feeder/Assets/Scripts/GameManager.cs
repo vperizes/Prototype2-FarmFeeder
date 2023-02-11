@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void AddScore(int num)
+    {
+        score += num;
+       
+    }
+    
     public void AddLives(int num)
     {
         lives += num;
