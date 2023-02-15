@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float xRange = 20;
     private float zRange = 5;
     private float zRangeLow = -1.0f;
+    private Vector3 projectileOffset;
+
     public GameObject projectilePrefab;
 
 
@@ -51,13 +53,14 @@ public class PlayerController : MonoBehaviour
             ///No longer necessary to Instantiate prefabs
             ///Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
 
+            projectileOffset = new Vector3(0, 1.5f, 0.7f);
 
             //Get an object object from the pool
             GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
             if (pooledProjectile != null)
             {
                 pooledProjectile.SetActive(true); // activate it
-                pooledProjectile.transform.position = transform.position; // position it at player
+                pooledProjectile.transform.position = transform.position + projectileOffset; // position it at player
             }
         }
 
