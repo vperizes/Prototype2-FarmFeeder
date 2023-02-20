@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class GameManager : MonoBehaviour
     public static int lives = 3;
 
     public bool isGameActive;
+    private bool isGamePaused;
+
 
     public TextMeshProUGUI scoreText; //recognizes UI element to show score
     public TextMeshProUGUI livesText;
 
-    public TextMeshProUGUI gameOverText;
     private GameObject player;
+    public GameObject pauseMenu;
+    public GameObject gameOverMenu;
+    public Button mainMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +32,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (isGamePaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+
         scoreText.text = "Score: " + score.ToString();
         livesText.text = "Lives: " + lives.ToString();
 
@@ -35,8 +52,27 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameActive = false;
-        gameOverText.gameObject.SetActive(true);
+        gameOverMenu.SetActive(true);
 
+    }
+
+    private void PauseGame()
+    {
+        isGamePaused = true;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f; //pauses everything, sets game time to 0
+    }
+
+    private void ResumeGame()
+    {
+        isGamePaused = false;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1.0f; //resumes game
+    }
+
+    public void ReturntoMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void AddScore(int num)
