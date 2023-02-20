@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private float horizontalInput;
     private float verticalInput;
-    private float speed = 20.0f;
+    [SerializeField] float speed;
     private float xRange = 20;
     private float zRange = 5;
     private float zRangeLow = -1.0f;

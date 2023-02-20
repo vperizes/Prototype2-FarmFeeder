@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText; //recognizes UI element to show score
     public TextMeshProUGUI livesText;
-    
+
     public TextMeshProUGUI gameOverText;
     private GameObject player;
 
@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
     public void AddScore(int num)
     {
         score += num;
-       
+
     }
-    
+
     public void AddLives(int num)
     {
         lives += num;
