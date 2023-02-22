@@ -26,7 +26,19 @@ public class SpawnManager : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         
         mainMenu = MainMenu._mMenu;
+        SpawnLogic();
 
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void SpawnLogic()
+    {
         if (mainMenu.isEasy)
         {
             InvokeRepeating("EasySpawn", startDelay, spawnInt);
@@ -39,14 +51,6 @@ public class SpawnManager : MonoBehaviour
         {
             InvokeRepeating("HardSpawn", startDelay, spawnInt);
         }
-        
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 

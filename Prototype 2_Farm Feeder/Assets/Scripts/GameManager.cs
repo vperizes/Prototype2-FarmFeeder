@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static int score = 0; //these are static so they can be accessed in other scripts
-    public static int lives = 3;
+    private int score = 0; 
+    private int lives = 3;
 
     public bool isGameActive;
     private bool isGamePaused;
@@ -20,13 +20,14 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
-    public Button mainMenu;
+    public Button mainMenuButton;
 
     // Start is called before the first frame update
     void Start()
     {
         isGameActive = true;
         player = GameObject.Find("Player");
+        
     }
 
     // Update is called once per frame
@@ -72,7 +73,14 @@ public class GameManager : MonoBehaviour
 
     public void ReturntoMainMenu()
     {
+        ResumeGame();
         SceneManager.LoadScene("MainMenu");
+          
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void AddScore(int num)
